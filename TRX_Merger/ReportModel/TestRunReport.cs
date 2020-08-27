@@ -82,7 +82,7 @@ namespace TRX_Merger.ReportModel
         {
             List<string> tests = Run.TestDefinitions.Where(td => td.TestMethod.ClassName.EndsWith(className)).Select(ttdd => ttdd.TestMethod.Name).ToList();
             
-            var results = Run.Results.Where(r => tests.Contains(r.TestName)).ToList();
+            var results = Run.Results.Where(r => tests.Any(s=> r.TestName.Contains(s))).ToList();
            
             List<UnitTestResultReport> resultReports = new List<UnitTestResultReport>();
             foreach (var r in results)
